@@ -1,7 +1,7 @@
 <h1>Monitors the availability of many websites</h1>
 
 <h2>System Design</h2>
-![system design](https://github.com/aiven-recruitment/python-20231220-VladislavN/blob/master/imgs/system_design.png?raw=true)
+![system design](../blob/master/imgs/system_design.png?raw=true)
 
 System consist of 3 parts: aiven_cli, producer, consumer
 
