@@ -1,7 +1,7 @@
 <h1>Monitors the availability of many websites</h1>
 
 <h2>System Design</h2>
-![system design](https://raw.githubusercontent.com/aiven-recruitment/python-20231220-VladislavN/master/imgs/system_design.png)
+![system design](https://github.com/aiven-recruitment/python-20231220-VladislavN/blob/master/imgs/system_design.png?raw=true)
 
 System consist of 3 parts: aiven_cli, producer, consumer
 
@@ -25,6 +25,7 @@ options:
 ```
 
 Example:
+
 ```bash
 aiven_cli.py add http://test.com -p 15
 ```
