@@ -1,0 +1,14 @@
+deploy/*quark*
+deploy/pgdata
+deploy/tmp
+cleanup_backups
+backup_trash
+static
+staticfiles
+logs
+venv
+env
+.env.*
+.pytest_cache
+.coverage
+coverage.xml

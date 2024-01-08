@@ -1,0 +1,21 @@
+version: 1
+disable_existing_loggers: no
+handlers:
+  console:
+    class: logging.StreamHandler
+root:
+  level: INFO
+  handlers: [console]
+loggers:
+  'gunicorn.access':
+    level: INFO
+    propagate: yes
+  'gunicorn.error':
+    level: INFO
+    propagate: yes
+  'uvicorn':
+    level: INFO
+    propagate: yes
+  'webapp':
+    level: INFO
+    propagate: yes

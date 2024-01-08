@@ -1,0 +1,39 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v3.2.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: check-yaml
+    -   id: check-added-large-files
+    -   id: check-toml
+    -   id: check-merge-conflict
+        name: Check for merge conflicts
+        description: Check for files that contain merge conflict strings
+        entry: check-merge-conflict
+        language: python
+        types: [ text ]
+
+-   repo: https://github.com/jorisroovers/gitlint
+    rev: v0.19.1
+    hooks:
+    -   id: gitlint-ci
+
+-   repo: local
+    hooks:
+    -   id: flake
+        name: Check flake
+        entry: bash -c 'docker build -f docker/Dockerfile --progress=plain --target flake .'
+        language: system
+        types: [ python ]
+        pass_filenames: false
+
+-   repo: local
+    hooks:
+    -   id: pytest
+        name: Check pytest
+        entry: bash -c 'docker build -f docker/Dockerfile --progress=plain --target test .'
+        language: system
+        types: [ python ]
+        pass_filenames: false

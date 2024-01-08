@@ -1,0 +1,49 @@
+version: "3.7"
+services:
+  aiven-create-db:
+    container_name: aiven-create-db
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: .
+    env_file:
+      - .env_create_db
+    command: ./scripts/application/create_db.sh
+    restart: on-failure:5
+    volumes:
+      - .:/app
+    networks:
+        - product_service_network
+
+  aiven-producer:
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: .
+    env_file:
+      - .env_producer
+    command: ./scripts/application/producer.sh
+    restart: always
+    volumes:
+      - .:/app
+    depends_on:
+      - aiven-create-db
+    networks:
+        - product_service_network
+
+  aiven-consumer:
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: .
+    env_file:
+      - .env_consumer
+    command: ./scripts/application/consumer.sh
+    restart: always
+    volumes:
+      - .:/app
+    depends_on:
+      - aiven-create-db
+    networks:
+      - product_service_network
+
+networks:
+    product_service_network:
+        driver: bridge

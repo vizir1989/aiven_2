@@ -1,0 +1,28 @@
+stages:
+  - run-flake
+  - run-tests
+  - build-image
+
+run-tests:
+  stage: run-tests
+  allow_failure: false
+  script:
+    - docker build --target test -f docker/Dockerfile .
+  tags:
+    - fast
+
+run-flake:
+  stage: run-flake
+  allow_failure: false
+  script:
+    - docker build --target flake -f docker/Dockerfile .
+  tags:
+    - fast
+
+build-image:
+  stage: build-image
+  allow_failure: false
+  script:
+    - docker build --target dist-image -f docker/Dockerfile .
+  tags:
+    - fast
